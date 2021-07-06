@@ -1,0 +1,36 @@
+{
+	"name": "Airline Club Tools",
+	"version": "1.0",
+	"manifest_version": 2,
+	"description": "Various tools for Airline Club website",
+	"background": {
+		"scripts": ["background.js"],
+		"persistent": true
+	},
+	"page_action": {
+	"default_popup": "popup.html"
+	},
+	"content_scripts":[
+	{
+		"matches": [
+			"http://www.airline-club.com/*",
+			"https://www.airline-club.com/*"
+			],
+		"js": ["content.js"],
+		"run_at": "document_idle"    // Pay attention to this line
+	}
+	],
+	"web_accessible_resources": [
+		"ac_country_data.js",
+		"ac_country_mutual_relation.js",
+		"ac_world_geojson.js",
+		"country_relation_map.js",
+		"airline_relation_map.js",
+		"logo.png"
+	],
+	"permissions": [
+		"https://www.airline-club.com/*",
+		"http://www.airline-club.com/*",
+		"tabs"
+	]
+}
