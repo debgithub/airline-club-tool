@@ -5,13 +5,13 @@ let description={"-3":"Hostile","-2":"Hostile","-1":"Hostile","0":"Neutral","1":
 actool_country_data.forEach(function(cntry){
 	country_mapper[cntry['alpha-2']]={alpha3: cntry['alpha-3'], name: cntry['name']};
 });
-selected_country=document.querySelectorAll('#countryTable > .table-row.clickable.selected');
-if(selected_country.length==0){
+selected_country_element=document.querySelectorAll('#countryTable > .table-row.clickable.selected');
+if(selected_country_element.length==0){
 	alert("Please select a country from the counrty tab");
 	return;
 }
-console.log(selected_country[0].getAttribute('data-country-code'));
-selected_country_data=actool_country_mutual_relation[selected_country[0].getAttribute('data-country-code')];
+selected_country=selected_country_element[0].getAttribute('data-country-code');
+selected_country_data=actool_country_mutual_relation[selected_country];
 for (k in selected_country_data){
 	country_relation[country_mapper[k].alpha3]={name: country_mapper[k].name, val: selected_country_data[k], relation: description[selected_country_data[k]]+"("+selected_country_data[k]+")"};
 }
@@ -140,6 +140,10 @@ let tooltiptimer=null;
 			const countrykey=Object.keys(country_mapper).find(key => country_mapper[key].alpha3 === d.id);
 			d.data.name = countrykey===undefined ? "Undefined" : country_mapper[countrykey].name;
 			d.data.relation = description[0]+"(0)";
+		}
+		if(d.id==country_mapper[selected_country]['alpha3']){
+			d.data.val=5;
+			d.data.relation = description[0]+"(5)";
 		}
         return colorScale(d.data.val);
       })
