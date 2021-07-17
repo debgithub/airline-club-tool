@@ -40,4 +40,7 @@ s = document.createElement('div');
 s.setAttribute('class','table-row');
 s.innerHTML="<div class=\"label\"><h5>Relationship Map:</h5></div><div class=\"value\" style=\"padding-bottom : 10px;\"><div class=\"button\" onclick=\"country_choropleth_creator();\">Show Map</div></div>";
 document.querySelector('#countryDetails').appendChild(s);
+s = document.createElement('script');
+s.src = chrome.runtime.getURL('alliance_member_reppointlist.js');
+document.head.appendChild(s);
 console.log("Airline Tool loaded");

@@ -17,7 +17,7 @@
 			"https://www.airline-club.com/*"
 			],
 		"js": ["content.js"],
-		"run_at": "document_idle"    // Pay attention to this line
+		"run_at": "document_idle"
 	}
 	],
 	"web_accessible_resources": [
@@ -26,6 +26,7 @@
 		"ac_world_geojson.js",
 		"country_relation_map.js",
 		"airline_relation_map.js",
+		"alliance_member_reppointlist.js",
 		"logo.png"
 	],
 	"permissions": [
