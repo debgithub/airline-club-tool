@@ -75,11 +75,14 @@ async function alliance_member_reputation(allianceId){
 	allianceAirlineApplicants.sort(function(a,b){
 		return b.reputation-a.reputation;
 	});
+	function getStatusElement(id){
+		return loadedRivalsById[id] && `<img src='${getStatusLogo(loadedRivalsById[id].loginStatus)}' title='${getStatusTitle(loadedRivalsById[id].loginStatus)}' style='vertical-align:middle;'/>` || "";
+	}
 	allianceAirlineMembers.forEach(function(ele){
 		var row=document.createElement('div');
 		row.setAttribute('class','table-row');
 		row.innerHTML=`
-		<div class='cell'> ${getAirlineLogoImg(ele.id) + ele.name} </div>
+		<div class='cell'> ${getStatusElement(ele.id) + getAirlineLogoImg(ele.id) + ele.name} </div>
 		<div class='cell' align='right'> ${commaSeparateNumber(ele.loyalist)} </div>
 		<div class='cell' align='right'> ${ele.reputation.toFixed(2)} </div>
 		`;
@@ -89,7 +92,7 @@ async function alliance_member_reputation(allianceId){
 		var row=document.createElement('div');
 		row.setAttribute('class','table-row');
 		row.innerHTML=`
-		<div class='cell'> ${getAirlineLogoImg(ele.id) + ele.name} </div>
+		<div class='cell'> ${getStatusElement(ele.id) + getAirlineLogoImg(ele.id) + ele.name} </div>
 		<div class='cell' align='right'> ${commaSeparateNumber(ele.loyalist)} </div>
 		<div class='cell warning' align='right'><img src='assets/images/icons/information.png' title='Points not counted as this airline is not an approved member yet'> ${ele.reputation.toFixed(2)} </div>
 		`;
